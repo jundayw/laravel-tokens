@@ -27,7 +27,7 @@ class User extends Authenticatable implements HasTokensContract
         // 获取用户
         //$request->user($guard);
         // 登录逻辑
-        //Auth::guard($guard)->login(User::find(1));
+        //Auth::guard($guard)->claims([])->login(User::find(1));
         // 退出登录
         //Auth::guard($guard)->logout();
     }

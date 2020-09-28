@@ -21,6 +21,12 @@ class TokensGuard implements Guard
     protected $config;
     protected $provider;
 
+    public $claims = [
+        'iss' => '',
+        'sub' => '',
+        'aud' => '',
+    ];
+
     public function __construct($app, $name, $config)
     {
         $this->request  = $app['request'];
@@ -86,7 +92,7 @@ class TokensGuard implements Guard
         $exp     = time() + config('tokens.ttl', 7200);
         $jti     = $authenticatable->getJWTIdentifier();
         $builder = new Builder();
-        foreach ($authenticatable->getJWTCustomClaims() as $name => $value) {
+        foreach ($this->claims as $name => $value) {
             $builder->withClaim(strtolower($name), strtolower($value));
         }
         //$builder->issuedBy(get_class($authenticatable));// Configures the issuer (iss claim)
@@ -103,6 +109,12 @@ class TokensGuard implements Guard
     public function logout()
     {
         return true;
+    }
+
+    public function claims($customClaims = [])
+    {
+        $this->claims = $customClaims;
+        return $this;
     }
 
     public function validate(array $credentials = [])
