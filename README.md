@@ -18,15 +18,18 @@ authentication package that is simple and enjoyable to use.
 
 ````
 use Jundayw\LaravelTokens\HasTokens;
-class User extends Authenticatable
+use Jundayw\LaravelTokens\HasTokensContract;
+class User extends Authenticatable implements HasTokensContract
 {
-    use Notifiable;
     use HasTokens;
     
     public function login($request){
+        // 获取用户
+        //$request->user($guard);
         // 登录逻辑
-        $this->createToken($user->id,'user','weixin');
-        //$this->createToken($user->id,'user','alipay');
+        //Auth::guard($guard)->login(User::find(1));
+        // 退出登录
+        //Auth::guard($guard)->logout();
     }
 }
 ````
