@@ -10,7 +10,7 @@ authentication package that is simple and enjoyable to use.
 # 配置方法
 
 将配置文件 auth.php 中 guards 的 driver 字段修改为 tokens
-````
+````php
 'guards' => [
     'web' => [
         'driver' => 'tokens',
@@ -19,7 +19,7 @@ authentication package that is simple and enjoyable to use.
 ],
 ````
 用户信息获取、登录及退出操作
-````
+````php
 use Jundayw\LaravelTokens\HasTokens;
 use Jundayw\LaravelTokens\HasTokensContract;
 
